@@ -1,0 +1,41 @@
+#cloud-config
+
+hostname: ${hostname}
+
+# update all packages and reboot
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+# Add groups
+groups:
+  - devops
+  - docker
+
+# Setup Users
+users:
+  - name: ${username}
+    groups: [sudo, adm, docker]
+    ssh_authorized_keys:
+      - ${pubkey1}
+      - ${pubkey2}
+      - ${pubkey3}
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+
+apt:
+  sources:
+    docker.list:
+      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable
+      keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+packages:
+  - python3-pip
+  - docker-ce
+  - docker-ce-cli
+
+runcmd:
+  - echo "> Begin Cloud-init runcmd"
+  - echo ">> FINISHED cloud-init runcmd"
+
+final_message: "> The system is ready!"

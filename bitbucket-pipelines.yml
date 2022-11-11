@@ -1,0 +1,146 @@
+image: krisdthompson/terraform-azure:v-0.1.2
+definitions:
+  steps:
+    - step: &No-Op
+        name: No-Op
+        image: alpine:3
+        script:
+        - echo "No-Op Step"
+        - echo "ENV_NAME ':' ${ENV_NAME}"
+    - step: &AzureInit-Bucket
+        name: Create Azure TFState Storage Account
+        trigger: manual
+        script:
+          - cd azure
+          - echo "Creating Storage Account for Terraform State files - ${INFRA_NAME}-${ENV_NAME}"
+          - ./terraform_runner.sh azure init
+    - step: &AzureNetwork-Create
+        name: Setup Azure Network
+        trigger: manual
+        script:
+          - cd azure
+          - echo "Setup Azure Network"
+          - ./terraform_runner.sh azure network
+    - step: &AzureNetwork-Destroy
+        name: Destroy Azure Network
+        trigger: manual
+        script:
+          - cd azure
+          - echo "Destroy Azure Network"
+          - ./terraform_runner.sh azure network destroy
+    - step: &AzureNetwork-Plan
+        name: Plan Azure Network
+        trigger: manual
+        script:
+          - cd azure
+          - echo "Plan Azure Network"
+          - ./terraform_runner.sh azure network plan
+    - step: &AzureVM0-Create
+        name: Create Azure VM0
+        trigger: manual
+        script:
+          - cd azure
+          - echo "Create Azure VM0"
+          - ./terraform_runner.sh azure vm0
+    - step: &AzureVM0-Destroy
+        name: Destroy Azure VM0
+        trigger: manual
+        script:
+          - cd azure
+          - echo "Destroy Azure VM0"
+          - ./terraform_runner.sh azure vm0 destroy
+    - step: &AzureVM0-Plan
+        name: Plan Azure VM0
+        trigger: manual
+        script:
+          - cd azure
+          - echo "Plan Azure VM0"
+          - ./terraform_runner.sh azure vm0 plan
+pipelines:
+  default:
+    - step: *No-Op
+  custom:
+    azureinit-tfstore:
+      - variables:
+        - name: ENV_NAME
+          default: "DEVX"
+          allowed-values: # restrict to valid env_names
+            - "SAND0"
+            - "DEV0"
+            - "DEV1"
+            - "DEVX"
+      - step: *No-Op
+      - step: *AzureInit-Bucket
+    create-azure-network:
+      - variables:
+        - name: ENV_NAME
+          default: "DEVX"
+          allowed-values: # restrict to valid env_names
+            - "SAND0"
+            - "DEV0"
+            - "DEV1"
+            - "DEVX"
+      - step: *No-Op
+      - step: *AzureNetwork-Create
+    destroy-azure-network:
+      - variables:
+        - name: ENV_NAME
+          default: "DEVX"
+          allowed-values: # restrict to valid env_names
+            - "SAND0"
+            - "DEV0"
+            - "DEV1"
+            - "DEVX"
+      - step: *No-Op
+      - step: *AzureNetwork-Destroy
+    plan-azure-network:
+      - variables:
+        - name: ENV_NAME
+          default: "DEVX"
+          allowed-values: # restrict to valid env_names
+            - "SAND0"
+            - "DEV0"
+            - "DEV1"
+            - "DEVX"
+      - step: *No-Op
+      - step: *AzureNetwork-Plan
+    create-azure-vm0:
+      - variables:
+        - name: ENV_NAME
+          default: "DEVX"
+          allowed-values: # restrict to valid env_names
+            - "SAND0"
+            - "DEV0"
+            - "DEV1"
+            - "DEVX"
+      - step: *No-Op
+      - step: *AzureVM0-Create
+    destroy-azure-vm0:
+      - variables:
+        - name: ENV_NAME
+          default: "DEVX"
+          allowed-values: # restrict to valid env_names
+            - "SAND0"
+            - "DEV0"
+            - "DEV1"
+            - "DEVX"
+      - step: *No-Op
+      - step: *AzureVM0-Destroy
+    plan-azure-vm0:
+      - variables:
+        - name: ENV_NAME
+          default: "DEVX"
+          allowed-values: # restrict to valid env_names
+            - "SAND0"
+            - "DEV0"
+            - "DEV1"
+            - "DEVX"
+      - step: *No-Op
+      - step: *AzureVM0-Plan
+  branches:
+    trunk:
+      - step: *No-Op
+    feature-infra-*:
+      - step: *No-Op
+    feature-network-*:
+      - step: *No-Op

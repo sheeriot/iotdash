@@ -1,0 +1,11 @@
+# macs do this
+.DS_Store
+
+# hide ENV and Credentials
+*_creds
+*.env
+
+# git is no place for terraform state
+.terraform
+terraform.tfstate.d
+.terraform.lock.hcl

@@ -15,10 +15,9 @@ data "azurerm_subnet" "subnet2" {
     resource_group_name = "${local.net_env}-net_rg"
 }
 
-data "azurerm_platform_image" "ubuntu22" {
+data "azurerm_platform_image" "vm_image" {
     location = var.location
-    publisher  = "Canonical"
-    offer = "0001-com-ubuntu-server-jammy"
-    sku = "22_04-lts-gen2"
-    # version = "22.04.202211011"
+    publisher  = "${var.image_publisher}"
+    offer = "${var.image_offer}"
+    sku = "${var.image_sku}"
 }

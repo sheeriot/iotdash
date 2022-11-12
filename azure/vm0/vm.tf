@@ -30,7 +30,7 @@ resource "azurerm_linux_virtual_machine" "surveyor" {
   name                = "${local.hostname}"
   resource_group_name = azurerm_resource_group.vm.name
   location            = azurerm_resource_group.vm.location
-  size                = "Standard_B2s"
+  size                = "${var.vm_size}"
   lifecycle {
       ignore_changes = [
         custom_data,
@@ -40,7 +40,7 @@ resource "azurerm_linux_virtual_machine" "surveyor" {
   }
   custom_data = base64encode(templatefile("scripts/cloud-init.tftpl", {
       hostname = local.hostname,
-      username = var.username,
+      username = var.vm_user,
       pubkey1 = file("${path.module}/pubkeys/${var.pubkey1_file}"),
       pubkey2 = file("${path.module}/pubkeys/${var.pubkey2_file}"),
       pubkey3 = file("${path.module}/pubkeys/${var.pubkey3_file}"),
@@ -55,14 +55,16 @@ resource "azurerm_linux_virtual_machine" "surveyor" {
     disk_size_gb          = 50
   }
   source_image_reference {
-    publisher = data.azurerm_platform_image.ubuntu22.publisher
-    offer     = data.azurerm_platform_image.ubuntu22.offer
-    sku       = data.azurerm_platform_image.ubuntu22.sku
-    version   = data.azurerm_platform_image.ubuntu22.version
+    publisher = data.azurerm_platform_image.vm_image.publisher
+    offer     = data.azurerm_platform_image.vm_image.offer
+    sku       = data.azurerm_platform_image.vm_image.sku
+    version   = data.azurerm_platform_image.vm_image.version
   }
-  admin_username = "${var.username}"
+  
+  admin_username = "${var.vm_user}"
+
   admin_ssh_key {
-    username   = "${var.username}"
+    username   = "${var.vm_user}"
     public_key = file("${path.module}/pubkeys/${var.pubkey1_file}")
   }
 

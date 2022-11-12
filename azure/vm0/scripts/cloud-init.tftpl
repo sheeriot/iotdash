@@ -25,17 +25,31 @@ users:
 
 apt:
   sources:
+    deadsnakes-ppa:
+      source: ppa:deadsnakes/ppa
     docker.list:
       source: deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable
       keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 
 packages:
+  - python3.10
+  - python3.10-venv
   - python3-pip
   - docker-ce
   - docker-ce-cli
 
 runcmd:
-  - echo "> Begin Cloud-init runcmd"
-  - echo ">> FINISHED cloud-init runcmd"
+  - [ sh, -xc, "echo $(date) ': Begin Cloud-Init runcmd'" ]
+  - [ install, -d, -m, 770, -o, kris, -g, docker, /opt/docker/surveyor ]
+  - [ runuser, -l, ${username}, -c, 'python3 -m venv --upgrade-deps /opt/docker/surveyor/venv' ]
+  - [ runuser, -l, ${username}, -c, 'ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519' ]
+  - [ sh, -xc, "echo $(date) ': End Cloud-Init runcmd'" ]
 
-final_message: "> The system is ready!"
+final_message: ">>  Fini...The system is ready!"
+
+power_state:
+    delay: now
+    mode: reboot
+    message: rebooting
+    timeout: 2
+    condition: true

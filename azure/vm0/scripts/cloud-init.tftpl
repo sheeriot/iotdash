@@ -39,11 +39,12 @@ packages:
   - docker-ce-cli
 
 runcmd:
-  - ["echo", ">> Begin Cloud-Init runcmd"]
-  
-  - ["echo", ">> FINISHED cloud-init runcmd"]
+  - [ sh, -xc, "echo $(date) ': Begin Cloud-Init runcmd'" ]
+  - [ install, -d, -m, 0770, -o, kris, -g, docker, /opt/docker/surveyor ]
+  - [ python3, -m, venv, venv ]
+  - [ sh, -xc, "echo $(date) ': End Cloud-Init runcmd'" ]
 
-final_message: "> The system is ready!"
+final_message: ">>  Fini...The system is ready!"
 
 power_state:
     delay: now

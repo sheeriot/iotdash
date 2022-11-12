@@ -18,39 +18,79 @@ variable "net_name" {
 variable "env_name" {
   type        = string
   description = "Name the Environment"
+  # Short Name Tag is used to seperate environments
+  # examples; SAND0, DEV1, QA, STAGE, PROD2
 }
-variable "username" {
-  default = "yourname"
+variable "vm_name" {
+  type = string
+  description = "Name the Virtual Machine"
+}
+variable "vm_user" {
+  type = string
+  description = "Set the Username for Linux login"
+}
+variable "vm_size" {
+  type = string
+  description = "Size of Azure VM"
+  # default = "Standard_B2s"
+  # https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable
+}
+variable "image_publisher" {
+  type = string
+  description = "Publisher Name on Azure"
+  default = "Canonical"
+}
+variable "image_offer" {
+  type = string
+  description = "Offer Name on Azure"
+  default = "0001-com-ubuntu-server-jammy"
+}
+variable "image_sku" {
+  type = string
+  description = "SKU Name on Azure"
+  default = "22_04-lts-gen2"
 }
 variable "ssh_src1" {
-  default = "108.215.4.163"
+  type = string
+  description = "ssh source ip address 1"
 }
 variable "ssh_src1name" {
-  default = "5702HB"
+  type = string
+  description = "ssh source name 1"
 }
 variable "ssh_src2" {
-  default = "37.247.51.34"
+  type = string
+  description = "ssh source ip address 2"
 }
 variable "ssh_src2name" {
-  default = "noisy"
+  type = string
+  description = "ssh source name 2"
 }
 variable "pubkey1_file" {
   type = string
-  description = "first public key for remote access"
+  description = "public ssh key 1 for remote access"
   default = "ssh_kt-mbpro20.pub"
 }
 variable "pubkey2_file" {
   type = string
-  description = "second public key for remote access"
-  default = "ssh_kt-noisy.pub"
+  description = "public ssh key 2 for remote access"
+  default = ""
 }
 variable "pubkey3_file" {
   type = string
-  description = "third public key for remote access"
-  default = "ssh_kt-imac17.pub"
+  description = "public ssh key 3 for remote access"
+  default = ""
 }
-variable "vm_name" {
-  type = string
-  description = "vm name"
-  default = "surveyor0"
-}
+
+# Setup "terraform.tfvars" in this folder to use your preferences
+# # note some variables are set in env.sh to ensure consistency between terraform components
+# vm_name = "surveyor0"
+# vm_user = "yourname"
+# vm_size = "Standard_B2s"
+# ssh_src1 = "1.1.1.1"
+# ssh_src1name = "sitenameA"
+# ssh_src2 = "9.9.9.9"
+# ssh_src2name = "jumphostB"
+# pubkey1_file = "ssh_kt-mbpro20.pub"
+# pubkey2_file = "ssh_kt-noisy.pub"
+# pubkey3_file = "ssh_kt-imac17.pub"

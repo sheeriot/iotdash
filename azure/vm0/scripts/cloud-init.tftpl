@@ -25,17 +25,23 @@ users:
 
 apt:
   sources:
+    deadsnakes-ppa:
+      source: ppa:deadsnakes/ppa
     docker.list:
       source: deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable
       keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 
 packages:
+  - python3.10
+  - python3.10-venv
   - python3-pip
   - docker-ce
   - docker-ce-cli
 
 runcmd:
-  - echo "> Begin Cloud-init runcmd"
-  - echo ">> FINISHED cloud-init runcmd"
+  - ["echo", ">> Begin Cloud-Init runcmd"]
+  - ["echo", ">> End Cloud-Init runcmd"]
+
+  - ["echo", ">> FINISHED cloud-init runcmd"]
 
 final_message: "> The system is ready!"

@@ -6,6 +6,7 @@
 *.env
 
 # git is no place for terraform state
+*.tfvars
 .terraform
 terraform.tfstate.d
 .terraform.lock.hcl

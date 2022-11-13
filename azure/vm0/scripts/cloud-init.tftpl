@@ -37,12 +37,15 @@ packages:
   - python3-pip
   - docker-ce
   - docker-ce-cli
-
+  - nginx
+  - docker-compose
+  
 runcmd:
   - [ sh, -xc, "echo $(date) ': Begin Cloud-Init runcmd'" ]
   - [ install, -d, -m, 770, -o, kris, -g, docker, /opt/docker/surveyor ]
   - [ runuser, -l, ${username}, -c, 'python3 -m venv --upgrade-deps /opt/docker/surveyor/venv' ]
   - [ runuser, -l, ${username}, -c, 'ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519' ]
+  - [ runuser, -l, ${username}, -c, 'docker network create iotdash_default' ]
   - [ sh, -xc, "echo $(date) ': End Cloud-Init runcmd'" ]
 
 final_message: ">>  Fini...The system is ready!"

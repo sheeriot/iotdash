@@ -37,9 +37,9 @@ packages:
   - python3-pip
   - docker-ce
   - docker-ce-cli
-  - nginx
   - docker-compose
-  
+  - nginx
+
 runcmd:
   - [ sh, -xc, "echo $(date) ': Begin Cloud-Init runcmd'" ]
   - [ install, -d, -m, 770, -o, kris, -g, docker, /opt/docker/surveyor ]

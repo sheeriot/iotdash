@@ -1,0 +1,2 @@
+cd /opt/docker
+git clone git@github.com:sheeriot/docker-iot-dashboard.git dashstack

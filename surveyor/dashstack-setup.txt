@@ -1,2 +1,25 @@
 cd /opt/docker
 git clone git@github.com:sheeriot/docker-iot-dashboard.git dashstack
+
+
+sed -ne '/^#+++/,/^#---/p' docker-compose.yml | sed -e '/^#[^ \t]/d' -e '/^# IOT/s/$/=/' > .env
+
+
+create .env in compose folder.
+    IOT_DASHBOARD_NGINX_FQDN=surveyor0.kttex.com
+    IOT_DASHBOARD_CERTBOT_FQDN=$IOT_DASHBOARD_NGINX_FQDN
+
+    IOT_DASHBOARD_CERTBOT_EMAIL=certs@austinvoicedata.com
+
+    IOT_DASHBOARD_DATA=/var/opt/dashstack
+    IOT_DASHBOARD_GRAFANA_SMTP_FROM_ADDRESS=monitor@austinvoicedata.com
+    IOT_DASHBOARD_GRAFANA_ADMIN_PASSWORD=L0ngH0rn
+    IOT_DASHBOARD_INFLUXDB_INITIAL_DATABASE_NAME=iotdashdb
+    IOT_DASHBOARD_MAIL_HOST_NAME=$IOT_DASHBOARD_NGINX_FQDN
+    IOT_DASHBOARD_MAIL_DOMAIN=$IOT_DASHBOARD_NGINX_FQDN
+    IOT_DASHBOARD_NODERED_INSTALL_PLUGINS=node-red-contrib-influxdb node-red-node-base64
+    IOT_DASHBOARD_TIMEZONE=America/Chicago
+    IOT_DASHBOARD_MONGO_INITDB_ROOT_USERNAME=mongoadmin
+    IOT_DASHBOARD_MONGO_INITDB_ROOT_PASSWORD=L0ngH0rn
+
+    

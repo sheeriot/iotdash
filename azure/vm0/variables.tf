@@ -18,8 +18,6 @@ variable "net_name" {
 variable "env_name" {
   type        = string
   description = "Name the Environment"
-  # Short Name Tag is used to seperate environments
-  # examples; SAND0, DEV1, QA, STAGE, PROD2
 }
 variable "vm_name" {
   type = string

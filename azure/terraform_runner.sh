@@ -1,6 +1,6 @@
 #!/bin/bash
 # The Terraform Runner....
-# v0.9
+# v0.10
 
 # Pass three input variables - env_type (e.g. d#ev or prod) and component name (e.g. role or ecr)
 # if the third variable is plan or destroy it will run corresponding terraform action
@@ -15,7 +15,7 @@ if [ "$1" = "$foldername" ]; then
     echo "Component: ${2}"
     echo "ENV_NAME: ${ENV_NAME}"
 
-    # setup variables script named dev/env.sh
+    # normalize variables script named env.sh
     source ./env.sh
     
     # change to terraform component directory
@@ -31,6 +31,8 @@ if [ "$1" = "$foldername" ]; then
     # -backend-config="bucket=${TFSTATE_BUCKETNAME}" \
     # -backend-config="key=${INFRA_NAME}/${COMPONENT}"
     
+    echo "Workspace ENV_NAME: ${ENV_NAME}"
+
     if ! terraform workspace select ${ENV_NAME}; then terraform workspace new ${ENV_NAME}; fi
     
     # terraform validate

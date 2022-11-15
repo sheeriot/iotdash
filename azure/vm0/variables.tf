@@ -80,7 +80,7 @@ variable "pubkey3_file" {
   default = ""
 }
 
-# Setup "terraform.tfvars" in this folder to use your preferences
+# Setup "terraform.tfvars" file in this folder to use your preferences
 # # note some variables are set in env.sh to ensure consistency between terraform components
 # vm_name = "surveyor0"
 # vm_user = "yourname"

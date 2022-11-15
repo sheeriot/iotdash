@@ -41,12 +41,9 @@ packages:
 
 runcmd:
   - [ sh, -xc, "echo $(date) ': Begin Cloud-Init runcmd'" ]
-  - [ install, -d, -m, 770, -o, kris, -g, docker, /opt/docker/surveyor ]
-  - [ chgrp, docker, /opt/docker ]
-  - [ chmod, 775, /opt/docker ]
-  # - [ runuser, -l, ${username}, -c, 'python3 -m venv --upgrade-deps /opt/docker/surveyor/venv' ]
+  - [ install, -d, -m, 770, -o, ${username}, -g, docker, /opt/docker ]
   - [ runuser, -l, ${username}, -c, 'ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519' ]
-  # - [ runuser, -l, ${username}, -c, 'docker network create dashstack_default' ]
+  - [ runuser, -l, ${username}, -c, 'docker network create dashstack_default' ]
   - [ sh, -xc, "echo $(date) ': End Cloud-Init runcmd'" ]
 
 final_message: ">>  Fini...The system is ready!"

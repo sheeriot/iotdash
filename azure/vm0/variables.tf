@@ -18,8 +18,6 @@ variable "net_name" {
 variable "env_name" {
   type        = string
   description = "Name the Environment"
-  # Short Name Tag is used to seperate environments
-  # examples; SAND0, DEV1, QA, STAGE, PROD2
 }
 variable "vm_name" {
   type = string
@@ -82,7 +80,7 @@ variable "pubkey3_file" {
   default = ""
 }
 
-# Setup "terraform.tfvars" in this folder to use your preferences
+# Setup "terraform.tfvars" file in this folder to use your preferences
 # # note some variables are set in env.sh to ensure consistency between terraform components
 # vm_name = "surveyor0"
 # vm_user = "yourname"

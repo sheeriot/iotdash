@@ -18,39 +18,104 @@ This repo was formed form the MCCI IoT-Dashboard.
 
 Clone the DashStack Repo to the `/opt/docker` folder:
 
->`git clone git@github.com:sheeriot/dashstack.git /opt/docker dashstack`
+>`git clone git@github.com:sheeriot/dashstack.git /opt/docker/dashstack`
+
+Change to the new directory for `docker-compose` operations:
+
+>`cd /opt/docker/dashstack`
 
 ## Create a Compose .env File for Variables
 
-create .env in compose folder.
+You need a file named `.env` in the docker-compose folder.
 
-    IOT_DASHBOARD_NGINX_FQDN=surveyor1.kttex.com
-    IOT_DASHBOARD_CERTBOT_FQDN=surveyor1.kttex.com
+Sample `.env` contents:
 
-    IOT_DASHBOARD_CERTBOT_EMAIL=certs@austinvoicedata.com
+```bash
+IOT_DASHBOARD_NGINX_FQDN=surveyor1.somedomain.yours
+IOT_DASHBOARD_CERTBOT_FQDN=surveyor1.somedomain.yours
 
-    IOT_DASHBOARD_DATA=/var/opt/dashstack
-    
-    IOT_DASHBOARD_GRAFANA_SMTP_FROM_ADDRESS=monitor@austinvoicedata.com
-    IOT_DASHBOARD_GRAFANA_ADMIN_PASSWORD=XXXXX
+IOT_DASHBOARD_CERTBOT_EMAIL=certs@somedomain.yours
 
-    IOT_DASHBOARD_INFLUXDB_INITIAL_DATABASE_NAME=iotdashdb
+IOT_DASHBOARD_DATA=/var/opt/dashstack
 
-    # IOT_DASHBOARD_MAIL_HOST_NAME=surveyor1.kttex.com
-    # IOT_DASHBOARD_MAIL_DOMAIN=surveyor1.kttex.com
+IOT_DASHBOARD_GRAFANA_SMTP_FROM_ADDRESS=monitor@somedomain.yours
+IOT_DASHBOARD_GRAFANA_ADMIN_PASSWORD=${GETYOUROWN}
 
-    IOT_DASHBOARD_NODERED_INSTALL_PLUGINS=node-red-contrib-influxdb node-red-node-base64
+IOT_DASHBOARD_INFLUXDB_INITIAL_DATABASE_NAME=iotdashdb
 
-    IOT_DASHBOARD_TIMEZONE=America/Chicago
+IOT_DASHBOARD_NODERED_INSTALL_PLUGINS=node-red-contrib-influxdb node-red-node-base64
+
+IOT_DASHBOARD_TIMEZONE=America/Chicago
+```
+
+## Setup the .htpasswd files
+
+The .htpasswd files MUST be setup next. Do this by running the NGINX container and the htpasswd script.
+
+### Create htpasswd files
+
+```bash
+kris@iotdash-dev-surveyor:/opt/docker/dashstack$ docker-compose run nginx bash
+Creating dashstack_nginx_run ... done
+root@60d77a58151d:/# touch /etc/nginx/authdata/influxdb/.htpasswd
+root@60d77a58151d:/# touch /etc/nginx/authdata/nodered/.htpasswd
+root@60d77a58151d:/# chown www-data /etc/nginx/authdata/influxdb/.htpasswd
+root@60d77a58151d:/# chown www-data /etc/nginx/authdata/nodered/.htpasswd
+```
+
+### Create HTTP Users
+
+Two .htpasswd files for http access to two apps: Node-RED, InfluxDB.
+
+Use the htpasswd command to set users with passwords.
+
+#### Node-RED Users
+
+```bash
+export USERS="kris opsadmin"
+for USER in $USERS; do \
+ echo "Set password for "$USER; \
+ htpasswd /etc/nginx/authdata/nodered/.htpasswd $USER; \
+done
+```
+
+#### InfluxDB Users
+
+```bash
+export USERS="kris nodered surveyor"
+for USER in $USERS; do \
+ echo "Set password for "$USER; \
+ htpasswd /etc/nginx/authdata/influxdb/.htpasswd $USER; \
+done
+```
+
+## Setup MQTT users
+
+```bash
+$ cd /opt/docker/dashstack
+$ docker-compose run mqtts /bin/bash
+Creating dashstack_mqtts_run ... done
+root@mqtts:/# mosquitto_passwd -c /etc/mosquitto/credentials/passwd kris
+Password: 
+Reenter password:
+root@mqtts:/#exit
+```
 
 ## Docker-Compose Up
 
-Start the Docker-Compose with
+With the passwords setup, you are now ready for `docker-compose up`.
+
+Start the Docker-Compose stack:
 
 > `docker-compose up`
 
-Start and Detach with
+This starts all containers and keeps them connected to the terminal. Use this to watch the container logs until all looks good.
+
+Start the Docker-Compose stack and Detach with:
 
 > `docker-compose up -d`
 
-RTFM
+### RTFM
+
+* docker-compose ps
+* docker-compose logs

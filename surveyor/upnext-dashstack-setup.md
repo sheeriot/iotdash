@@ -54,13 +54,21 @@ The .htpasswd files MUST be setup next. Do this by running the NGINX container a
 
 ### Create htpasswd files
 
+Startup the Docker-compose with the NGINX server in "run" mode (not executing the entrypoint). This allows you to setup NGINX before the first run.
+
 ```bash
 kris@iotdash-dev-surveyor:/opt/docker/dashstack$ docker-compose run nginx bash
-Creating dashstack_nginx_run ... done
-root@60d77a58151d:/# touch /etc/nginx/authdata/influxdb/.htpasswd
-root@60d77a58151d:/# touch /etc/nginx/authdata/nodered/.htpasswd
-root@60d77a58151d:/# chown www-data /etc/nginx/authdata/influxdb/.htpasswd
-root@60d77a58151d:/# chown www-data /etc/nginx/authdata/nodered/.htpasswd
+```
+
+First run, all containers are build and started (NGINX started with `bash` shell only).
+
+Now you are connected to `root` on the NGINX container, run these steps to setup your two .htpasswd files.
+
+```bash
+touch /etc/nginx/authdata/influxdb/.htpasswd
+touch /etc/nginx/authdata/nodered/.htpasswd
+chown www-data /etc/nginx/authdata/influxdb/.htpasswd
+chown www-data /etc/nginx/authdata/nodered/.htpasswd
 ```
 
 ### Create HTTP Users
@@ -70,6 +78,8 @@ Two .htpasswd files for http access to two apps: Node-RED, InfluxDB.
 Use the htpasswd command to set users with passwords.
 
 #### Node-RED Users
+
+This is an example only, define your own users.
 
 ```bash
 export USERS="kris opsadmin"
@@ -81,6 +91,8 @@ done
 
 #### InfluxDB Users
 
+This is an example only, define your own users.
+
 ```bash
 export USERS="kris nodered surveyor"
 for USER in $USERS; do \
@@ -91,6 +103,10 @@ done
 
 ## Setup MQTT users
 
+This is an example only, define your own users.
+
+Run the mqtts container to setup the Mosquitto credentials. Example below.
+
 ```bash
 $ cd /opt/docker/dashstack
 $ docker-compose run mqtts /bin/bash
@@ -98,7 +114,7 @@ Creating dashstack_mqtts_run ... done
 root@mqtts:/# mosquitto_passwd -c /etc/mosquitto/credentials/passwd kris
 Password: 
 Reenter password:
-root@mqtts:/#exit
+root@mqtts:/# exit
 ```
 
 ## Docker-Compose Up

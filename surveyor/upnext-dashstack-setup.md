@@ -101,21 +101,35 @@ for USER in $USERS; do \
 done
 ```
 
+NGINX users are ready. Exit the container (`exit`).
+
+Bring the docker-compose stack for the next step (MQTTS users).
+
+> `docker-compose down`
+
+
 ## Setup MQTT users
 
-This is an example only, define your own users.
-
 Run the mqtts container to setup the Mosquitto credentials. Example below.
+
+This is an example only, define your own users.
 
 ```bash
 $ cd /opt/docker/dashstack
 $ docker-compose run mqtts /bin/bash
 Creating dashstack_mqtts_run ... done
-root@mqtts:/# mosquitto_passwd -c /etc/mosquitto/credentials/passwd kris
+root@mqtts:/#
+```
+
+Now connected to the `mqtts` container in a bash shell, setup the MQTTS users as shown in the example below
+
+```bash
+mosquitto_passwd -c /etc/mosquitto/credentials/passwd kris
 Password: 
 Reenter password:
-root@mqtts:/# exit
 ```
+
+Be sure to `exit` the container and bring `docker-compose down`.
 
 ## Docker-Compose Up
 

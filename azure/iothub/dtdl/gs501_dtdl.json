@@ -1,0 +1,643 @@
+{
+  "@id": "dtmi:ktIotcenter:fieldtestGs501_1q9;1",
+  "@type": "Interface",
+  "contents": [
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:device;1",
+          "@type": [
+              "Property",
+              "StringValue"
+          ],
+          "description": {
+              "en": "LoRaWAN DevEUI"
+          },
+          "displayName": {
+              "en": "DevEUI"
+          },
+          "name": "deveui",
+          "schema": "string",
+          "writable": false
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:application;1",
+          "@type": [
+              "Property",
+              "StringValue"
+          ],
+          "description": {
+              "en": "LoRaWAN Application EUI"
+          },
+          "displayName": {
+              "en": "AppEUI"
+          },
+          "name": "appeui",
+          "schema": "string",
+          "writable": false
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:last_gateway;1",
+          "@type": [
+              "Property",
+              "StringValue"
+          ],
+          "description": {
+              "en": "last_gateway"
+          },
+          "displayName": {
+              "en": "Last Gateway"
+          },
+          "name": "last_gateway",
+          "schema": "string",
+          "writable": false
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:last_seen;1",
+          "@type": [
+              "Property",
+              "DateTimeValue"
+          ],
+          "description": {
+              "en": "last seen time"
+          },
+          "displayName": {
+              "en": "Last Seen"
+          },
+          "name": "last_seen",
+          "schema": "dateTime",
+          "writable": false
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:last_port;1",
+          "@type": [
+              "Property",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "last_port"
+          },
+          "displayName": {
+              "en": "Last Port"
+          },
+          "name": "last_port",
+          "schema": "integer",
+          "writable": false,
+          "maxValue": 255,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:last_rssi;1",
+          "@type": [
+              "Property",
+              "StringValue"
+          ],
+          "description": {
+              "en": "last_rssi"
+          },
+          "displayName": {
+              "en": "Last RSSI"
+          },
+          "name": "last_rssi",
+          "schema": "string",
+          "writable": false
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:last_snr;1",
+          "@type": [
+              "Property",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "last_snr"
+          },
+          "displayName": {
+              "en": "Last SNR"
+          },
+          "name": "last_snr",
+          "schema": "float",
+          "writable": false,
+          "decimalPlaces": 1,
+          "maxValue": 30,
+          "minValue": -30
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:last_uplink;1",
+          "@type": [
+              "Property",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "last_uplink counter"
+          },
+          "displayName": {
+              "en": "Last Uplink"
+          },
+          "name": "last_uplink",
+          "schema": "integer",
+          "writable": false,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:message_type;1",
+          "@type": [
+              "Telemetry",
+              "StringValue"
+          ],
+          "displayName": {
+              "en": "message type"
+          },
+          "name": "message_type",
+          "schema": "string"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:counter_up;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "Uplink Counter"
+          },
+          "displayName": {
+              "en": "counter_up"
+          },
+          "name": "counter_up",
+          "schema": "integer",
+          "decimalPlaces": 0,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:gateway;1",
+          "@type": [
+              "Telemetry",
+              "StringValue"
+          ],
+          "description": {
+              "en": "Gateway EUI"
+          },
+          "displayName": {
+              "en": "gateway"
+          },
+          "name": "gateway",
+          "schema": "string",
+          "maxLength": 12,
+          "minLength": 12
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:rssi;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue",
+              "Visualized"
+          ],
+          "description": {
+              "en": "Received Signal Strength Indicator"
+          },
+          "displayName": {
+              "en": "rssi"
+          },
+          "name": "rssi",
+          "schema": "integer",
+          "color": "#01B8AA",
+          "maxValue": -30,
+          "minValue": -150
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:snr;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue",
+              "Visualized"
+          ],
+          "description": {
+              "en": "Signal/Noise Ratio"
+          },
+          "displayName": {
+              "en": "snr"
+          },
+          "name": "snr",
+          "schema": "float",
+          "color": "#8AD4EB",
+          "decimalPlaces": 1,
+          "maxValue": 20,
+          "minValue": -20
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:frequency;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue",
+              "Frequency"
+          ],
+          "description": {
+              "en": "Transmission Frequency in Megahertz"
+          },
+          "displayName": {
+              "en": "frequency"
+          },
+          "name": "frequency",
+          "schema": "float",
+          "unit": "megahertz",
+          "decimalPlaces": 1,
+          "displayUnit": {
+              "en": "MHz"
+          },
+          "maxValue": 950,
+          "minValue": 850
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:bandwidth;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "Bandwidth in Kilohertz"
+          },
+          "displayName": {
+              "en": "bandwidth"
+          },
+          "name": "bandwidth",
+          "schema": "integer",
+          "unit": "kilohertz",
+          "displayUnit": {
+              "en": "KHz"
+          },
+          "maxValue": 500,
+          "minValue": 125
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:datarate;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "LoRaWAN Data Rate in Region"
+          },
+          "displayName": {
+              "en": "datarate"
+          },
+          "name": "datarate",
+          "schema": "integer",
+          "maxValue": 8,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:spreading;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "displayName": {
+              "en": "spreading"
+          },
+          "name": "spreading",
+          "schema": "integer",
+          "displayUnit": {
+              "en": "SF"
+          },
+          "maxValue": 12,
+          "minValue": 7
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:size;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue",
+              "DataSize"
+          ],
+          "description": {
+              "en": "Data Frame Size"
+          },
+          "displayName": {
+              "en": "size"
+          },
+          "name": "size",
+          "schema": "integer",
+          "unit": "byte",
+          "maxValue": 1000,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:port;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "LoRaWAN Frame Port"
+          },
+          "displayName": {
+              "en": "port"
+          },
+          "name": "port",
+          "schema": "integer",
+          "maxValue": 255,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:base64_payload;1",
+          "@type": [
+              "Telemetry",
+              "StringValue"
+          ],
+          "description": {
+              "en": "Data Frame Payload (in Base64)"
+          },
+          "displayName": {
+              "en": "base64_payload"
+          },
+          "name": "base64_payload",
+          "schema": "string"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:temperature;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue",
+              "Temperature"
+          ],
+          "description": {
+              "en": "Temperature from Sensor"
+          },
+          "displayName": {
+              "en": "temperature"
+          },
+          "name": "temperature",
+          "schema": "float",
+          "unit": "degreeCelsius",
+          "decimalPlaces": 1,
+          "displayUnit": {
+              "en": "C"
+          },
+          "maxValue": 1000,
+          "minValue": -250
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:humidity;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue",
+              "Humidity"
+          ],
+          "description": {
+              "en": "Humidity from Sensor"
+          },
+          "displayName": {
+              "en": "humidity"
+          },
+          "name": "humidity",
+          "schema": "float",
+          "decimalPlaces": 1,
+          "maxValue": 100,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:battery_voltage;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "Battery Voltage in Millivolts"
+          },
+          "displayName": {
+              "en": "battery_voltage"
+          },
+          "name": "battery_voltage",
+          "schema": "integer",
+          "unit": "millivolt",
+          "decimalPlaces": 2,
+          "displayUnit": {
+              "en": "mV"
+          },
+          "maxValue": 5000,
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:reed_state;1",
+          "@type": [
+              "Telemetry",
+              "BooleanValue"
+          ],
+          "description": {
+              "en": "Reed Switch State"
+          },
+          "displayName": {
+              "en": "reed_state"
+          },
+          "name": "reed_state",
+          "schema": "boolean",
+          "displayUnit": {
+              "en": "Door"
+          },
+          "falseName": {
+              "en": "Open"
+          },
+          "trueName": {
+              "en": "Closed"
+          }
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:reed_count;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "description": {
+              "en": "Reed Switch Counter"
+          },
+          "displayName": {
+              "en": "reed_count"
+          },
+          "name": "reed_count",
+          "schema": "integer",
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:duplicate;1",
+          "@type": [
+              "Telemetry",
+              "BooleanValue"
+          ],
+          "description": {
+              "en": "LoRaWAN Network Server flags Duplicates"
+          },
+          "displayName": {
+              "en": "duplicate"
+          },
+          "name": "duplicate",
+          "schema": "boolean",
+          "falseName": {
+              "en": "Original"
+          },
+          "trueName": {
+              "en": "Duplicate"
+          }
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:packet_id;1",
+          "@type": [
+              "Telemetry",
+              "StringValue"
+          ],
+          "displayName": {
+              "en": "packet_id"
+          },
+          "name": "packet_id",
+          "schema": "string"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:packet_hash;1",
+          "@type": [
+              "Telemetry",
+              "StringValue"
+          ],
+          "displayName": {
+              "en": "packet_hash"
+          },
+          "name": "packet_hash",
+          "schema": "string"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:packet_time;1",
+          "@type": [
+              "Telemetry",
+              "DateTimeValue"
+          ],
+          "displayName": {
+              "en": "packet_time"
+          },
+          "name": "packet_time",
+          "schema": "dateTime"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:radio_time;1",
+          "@type": [
+              "Telemetry",
+              "DateTimeValue"
+          ],
+          "displayName": {
+              "en": "radio_time"
+          },
+          "name": "radio_time",
+          "schema": "dateTime"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:rx_time;1",
+          "@type": [
+              "Telemetry",
+              "DateTimeValue"
+          ],
+          "displayName": {
+              "en": "rx_time"
+          },
+          "name": "rx_time",
+          "schema": "dateTime"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:delay;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue",
+              "TimeSpan"
+          ],
+          "displayName": {
+              "en": "delay"
+          },
+          "name": "delay",
+          "schema": "float",
+          "minValue": 0
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldTestGs501_1q9:gps_time;1",
+          "@type": [
+              "Telemetry",
+              "DateTimeValue"
+          ],
+          "displayName": {
+              "en": "gps_time"
+          },
+          "name": "gps_time",
+          "schema": "dateTime"
+      },
+      {
+          "@type": [
+              "Property",
+              "Location"
+          ],
+          "displayName": {
+              "en": "gateway_location"
+          },
+          "name": "gateway_location",
+          "schema": "geopoint",
+          "writable": false
+      },
+      {
+          "@type": [
+              "Telemetry",
+              "Location"
+          ],
+          "displayName": {
+              "en": "device_location"
+          },
+          "name": "device_location",
+          "schema": "geopoint"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldtestGs501_1q9:gw_location;1",
+          "@type": [
+              "Telemetry",
+              "Location"
+          ],
+          "displayName": {
+              "en": "gw_location"
+          },
+          "name": "gw_location",
+          "schema": "geopoint"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldtestGs501_1q9:decoder;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "displayName": {
+              "en": "decoder"
+          },
+          "name": "decoder",
+          "schema": "double"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldtestGs501_1q9:gps_valid;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "displayName": {
+              "en": "gps_valid"
+          },
+          "name": "gps_valid",
+          "schema": "double"
+      },
+      {
+          "@id": "dtmi:ktIotcenter:fieldtestGs501_1q9:gps_status;1",
+          "@type": [
+              "Telemetry",
+              "NumberValue"
+          ],
+          "displayName": {
+              "en": "gps_status"
+          },
+          "name": "gps_status",
+          "schema": "double"
+      }
+  ],
+  "displayName": {
+      "en": "fieldtest-gs501"
+  },
+  "@context": [
+      "dtmi:iotcentral:context;2",
+      "dtmi:dtdl:context;2"
+  ]
+}

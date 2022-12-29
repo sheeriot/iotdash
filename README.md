@@ -16,9 +16,11 @@ Typical software applications:
 * Grafana for Ad Hoc Query and Dashboards
 * Django for Custom Apps
 
-This projects is focussed on Infrastructure as Code (IaC) using Terraform.
-
 ## Building Blocks
+
+* setup User and local.env file(s)
+* run terraform init to create backend storage
+* run 
 
 ### Azure Infrastructure
 

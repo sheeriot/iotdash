@@ -90,3 +90,20 @@ cd azure
 ```
 
 Be sure to set the needed variables in azure/vm0/variables.tf and add your own public keys to azure/vm0/pubkeys.
+
+### VM Created - What Next
+
+Connect to the new VM using your username, the SSH Key provided, and a permitted IP address. 
+Setup ~/.ssh/config for convenience.
+
+Once logged into the new VM, you can clone the DashStack from SheerIoT:
+
+* DashStack Public Repo: [https://github.com/sheeriot/dashstack](https://github.com/sheeriot/dashstack)
+
+`git clone https://github.com/sheeriot/dashstack.git /opt/docker/dashstack`
+
+Some setup of the DashStack will be required. Setup NGINX proxies to match your custom applications.
+
+## Terraform Component - Azure IoT-Hub/Central
+
+Azure IoT-Central provides a superset of features wrapped around Azure IoT-Hub. The terraform did create an Azure IoT-Central but we were unable to login. For now, the IoT-Central application is created manually in the Azure portal.

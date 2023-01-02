@@ -46,19 +46,21 @@ resource "azurerm_network_security_rule" "http80" {
   network_security_group_name = azurerm_network_security_group.surveyor.name
 }
 
-resource "azurerm_network_security_rule" "http8000" {
-  priority                    = 112
-  name                        = "tcp8000-http_from_any"
-  source_address_prefix       = "*"
-  direction                   = "Inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "8000"
-  destination_address_prefix  = azurerm_network_interface.surveyor.private_ip_address
-  resource_group_name         = azurerm_resource_group.vm.name
-  network_security_group_name = azurerm_network_security_group.surveyor.name
-}
+# Django port 8000 behind NGINX - use this rule to expose dev port (no-proxy by nginx)
+# resource "azurerm_network_security_rule" "http8000" {
+#   priority                    = 112
+#   name                        = "tcp8000-http_from_any"
+#   source_address_prefix       = "*"
+#   direction                   = "Inbound"
+#   access                      = "Allow"
+#   protocol                    = "Tcp"
+#   source_port_range           = "*"
+#   destination_port_range      = "8000"
+#   destination_address_prefix  = azurerm_network_interface.surveyor.private_ip_address
+#   resource_group_name         = azurerm_resource_group.vm.name
+#   network_security_group_name = azurerm_network_security_group.surveyor.name
+# }
+
 resource "azurerm_network_security_rule" "https443" {
   priority                    = 113
   name                        = "tcp8883-https_from_any"
@@ -72,10 +74,10 @@ resource "azurerm_network_security_rule" "https443" {
   resource_group_name         = azurerm_resource_group.vm.name
   network_security_group_name = azurerm_network_security_group.surveyor.name
 }
-resource "azurerm_network_security_rule" "tcp8883_src1" {
+resource "azurerm_network_security_rule" "tcp8883" {
   priority                    = 114
-  name                        = "tcp8883-mqtts_from_${var.ssh_src1name}"
-  source_address_prefix       = var.ssh_src1
+  name                        = "tcp8883-mqtts_from_any"
+  source_address_prefix       = "*"
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"

@@ -74,19 +74,7 @@ resource "azurerm_network_security_rule" "https443" {
   resource_group_name         = azurerm_resource_group.vm.name
   network_security_group_name = azurerm_network_security_group.surveyor.name
 }
-resource "azurerm_network_security_rule" "tcp8883" {
-  priority                    = 114
-  name                        = "tcp8883-mqtts_from_any"
-  source_address_prefix       = "*"
-  direction                   = "Inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "8883"
-  destination_address_prefix  = azurerm_network_interface.surveyor.private_ip_address
-  resource_group_name         = azurerm_resource_group.vm.name
-  network_security_group_name = azurerm_network_security_group.surveyor.name
-}
+
 resource "azurerm_network_security_rule" "tcp8083_src1" {
   priority                    = 115
   name                        = "tcp8083-mqtt-wss_from_${var.ssh_src1name}"
@@ -100,6 +88,7 @@ resource "azurerm_network_security_rule" "tcp8083_src1" {
   resource_group_name         = azurerm_resource_group.vm.name
   network_security_group_name = azurerm_network_security_group.surveyor.name
 }
+
 resource "azurerm_network_security_rule" "tcp1883_src1" {
   priority                    = 116
   name                        = "tcp1883-mqtt_from_${var.ssh_src1name}"
@@ -113,6 +102,21 @@ resource "azurerm_network_security_rule" "tcp1883_src1" {
   resource_group_name         = azurerm_resource_group.vm.name
   network_security_group_name = azurerm_network_security_group.surveyor.name
 }
+
+resource "azurerm_network_security_rule" "tcp8883" {
+  priority                    = 117
+  name                        = "tcp8883-mqtts_from_any"
+  source_address_prefix       = "*"
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "8883"
+  destination_address_prefix  = azurerm_network_interface.surveyor.private_ip_address
+  resource_group_name         = azurerm_resource_group.vm.name
+  network_security_group_name = azurerm_network_security_group.surveyor.name
+}
+
 resource "azurerm_network_interface_security_group_association" "iotdash" {
   network_interface_id      = azurerm_network_interface.surveyor.id
   network_security_group_id = azurerm_network_security_group.surveyor.id

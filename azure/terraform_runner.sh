@@ -1,6 +1,6 @@
 #!/bin/bash
 # The Terraform Runner....
-# v0.10
+# v0.11 - now use "apply or you get "plan" by default
 
 # Pass three input variables - env_type (e.g. d#ev or prod) and component name (e.g. role or ecr)
 # if the third variable is plan or destroy it will run corresponding terraform action
@@ -37,16 +37,14 @@ if [ "$1" = "$foldername" ]; then
     
     # terraform validate
     
-    if [ "${3}" = "plan" ]; then
-        terraform plan
+    if [ "${3}" = "apply" ]; then
+        terraform apply -auto-approve
     elif [ "${3}" = "destroy" ]; then
         terraform destroy -auto-approve
     else
-        terraform apply -auto-approve
+        terraform plan
     fi
-    
+
 else
-    
     echo "Foldername: ${foldername} should match ENV_TYPE requested: ${1}"
-    
 fi

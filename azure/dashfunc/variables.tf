@@ -31,3 +31,6 @@ variable "env_name" {
 variable "timezone" {
   default = "America/Chicago"
 }
+variable "timezone" {
+  kv_owner = "78070f1c-ddb0-47dd-b1a4-d4d3f3c2b954"
+}

@@ -26,7 +26,17 @@ resource "azurerm_linux_function_app" "funcapp" {
   service_plan_id            = azurerm_service_plan.funcplan.id
   storage_account_name       = azurerm_storage_account.funcstore.name
   storage_account_access_key = azurerm_storage_account.funcstore.primary_access_key
-  # WTF
-  site_config {}
+  functions_extension_version = "~4"
+  enabled                     = true
+  https_only                  = true
+
+  site_config {
+    application_insights_key = azurerm_application_insights.func.instrumentation_key
+    application_insights_connection_string = azurerm_application_insights.func.connection_string
+    minimum_tls_version = "1.2"
+    application_stack {
+      python_version = "3.10"
+    }
+  }
 }
 

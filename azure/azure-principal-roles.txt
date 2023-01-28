@@ -1,0 +1,10 @@
+# Find user
+az ad sp list --filter "displayname eq 'svc-terraform-user'"
+
+# List assigned roles
+az role assignment list --all --assignee 11111111-1111-1111-1111-111111111111
+
+# Inspect assigned role
+az role definition list --name "Contributor"
+
+

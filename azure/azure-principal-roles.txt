@@ -1,0 +1,36 @@
+# Find user
+az ad sp list --filter "displayname eq 'svc-terraform-user'"
+    e.g.   "id": "24082f4c-8d38-4817-8b63-91ce5a06db01"
+
+MYAZ_ID=$(az ad signed-in-user show --query id -o tsv)
+
+# Show my Role Assignments
+az role assignment list --assignee $(az ad signed-in-user show --query id -o tsv)
+
+# Show terraform user roles
+az role assignment list --assignee 
+# List assigned roles
+az role assignment list --all --assignee 11111111-1111-1111-1111-111111111111
+
+# Inspect assigned role
+az role definition list --name "Key"
+
+az ad signed-in-user show --query id
+
+az role assignment create --role "Key Vault Administrator" --assignee 24082f4c-8d38-4817-8b63-91ce5a06db01
+ --scope <scope>
+
+ az role assignment create \
+    --role "Contributor" \
+    --assignee "${SERVICE_PRINCIPAL_ID}" \
+    --scope "/subscriptions/${SUBSCRIPTION_ID}"
+
+az role assignment create \
+    --role "User Access Administrator" \
+    --assignee "${SERVICE_PRINCIPAL_ID}" \
+    --scope "/subscriptions/${SUBSCRIPTION_ID}"
+
+az role assignment create \
+    --role "Key Vault Administrator" \
+    --assignee "${SERVICE_PRINCIPAL_ID}" \
+    --scope "/subscriptions/${SUBSCRIPTION_ID}"

@@ -24,7 +24,7 @@ locals {
   app_settings = {
     AZURE_LOG_LEVEL = "info"
     INFLUX_HOST = var.influx_host
-    INFLUX_ORG = var.influx_orgid
+    INFLUX_ORGID = var.influx_orgid
     MTAG1_BUCKET = var.mtag1_bucket
     MTAG1_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag1_reader.id})"
     MTAG1_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag1_writer.id})"

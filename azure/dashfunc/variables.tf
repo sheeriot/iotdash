@@ -41,7 +41,7 @@ variable "app_settings" {
   type = map
   description = "testing terraform features map and merge"
   default = {
-    mtag1_name = "AVD-Test1"
+    MTAG1_NAME = "AVD-Test1"
   }
 }
 variable "influx_host" {

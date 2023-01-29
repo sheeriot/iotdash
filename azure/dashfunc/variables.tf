@@ -32,3 +32,35 @@ variable "kv_owner" {
   description = "admin user for portal access"
   default = "78070f1c-ddb0-47dd-b1a4-d4d3f3c2b954"
 }
+variable "python_version" {
+  type = string
+  description = "Python Version"
+  default = "3.10"
+}
+variable "app_settings" {
+  type = map
+  description = "testing terraform features map and merge"
+  default = {
+    mtag1_name = "AVD-Test1"
+  }
+}
+variable "influx_host" {
+  type = string
+  description = "influx hostname"
+}
+variable "influx_orgid" {
+  type = string
+  description = "influx org-id"
+}
+variable "mtag1_bucket" {
+  type = string
+  description = "mtag1 bucket name"
+}
+variable "mtag1_reader" {
+  type = string
+  description = "Reader API Token for MTAG1 bucket"
+}
+variable "mtag1_writer" {
+  type = string
+  description = "Writer API Token for MTAG1 bucket"
+}

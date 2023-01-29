@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "func-rg" {
-  name     = "${local.app_env}-asp_rg"
+  name     = "${local.app_env}-functions_rg"
   location = var.location
 }
 
@@ -29,14 +29,18 @@ resource "azurerm_linux_function_app" "funcapp" {
   functions_extension_version = "~4"
   enabled                     = true
   https_only                  = true
+  app_settings                = merge(local.app_settings, var.app_settings)
 
   site_config {
     application_insights_key = azurerm_application_insights.func.instrumentation_key
     application_insights_connection_string = azurerm_application_insights.func.connection_string
     minimum_tls_version = "1.2"
+    http2_enabled       = true
     application_stack {
-      python_version = "3.10"
+      python_version = var.python_version
     }
   }
+
+
 }
 

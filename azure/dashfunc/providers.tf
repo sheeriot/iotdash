@@ -28,6 +28,12 @@ locals {
     MTAG1_BUCKET = var.mtag1_bucket
     MTAG1_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag1_reader.id})"
     MTAG1_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag1_writer.id})"
+    MTAG2_BUCKET = var.mtag2_bucket
+    MTAG2_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag2_reader.id})"
+    MTAG2_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag2_writer.id})"
+    MTAG0_BUCKET = var.mtag0_bucket
+    MTAG0_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag0_reader.id})"
+    MTAG0_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.mtag0_writer.id})"
   }
   # public key vault to permit access from Terraform hosts
   # needs Permitted IP list for Key Vault firewall

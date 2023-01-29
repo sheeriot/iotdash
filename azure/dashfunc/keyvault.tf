@@ -49,9 +49,27 @@ resource "azurerm_key_vault_secret" "mtag1_writer" {
   key_vault_id = azurerm_key_vault.dashfunc.id
   content_type = "api-token"
 }
-resource "azurerm_key_vault_secret" "topping" {
-  name         = "topping"
-  value        = "onion"
+resource "azurerm_key_vault_secret" "mtag2_reader" {
+  name         = "mtag2-reader"
+  value        = "${var.mtag2_reader}"
   key_vault_id = azurerm_key_vault.dashfunc.id
-  content_type = "food"
+  content_type = "api-token"
+}
+resource "azurerm_key_vault_secret" "mtag2_writer" {
+  name         = "mtag2-writer"
+  value        = "${var.mtag2_writer}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}
+resource "azurerm_key_vault_secret" "mtag0_reader" {
+  name         = "mtag0-reader"
+  value        = "${var.mtag0_reader}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}
+resource "azurerm_key_vault_secret" "mtag0_writer" {
+  name         = "mtag0-writer"
+  value        = "${var.mtag0_writer}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
 }

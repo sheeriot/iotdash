@@ -41,7 +41,9 @@ variable "app_settings" {
   type = map
   description = "testing terraform features map and merge"
   default = {
-    MTAG1_NAME = "AVD-Test1"
+    MTAG1_NAME = "MTAG-Test1"
+    MTAG2_NAME = "MTAG-Test2"
+    MTAG0_NAME = "MTAG-Test0"
   }
 }
 variable "influx_host" {
@@ -63,4 +65,28 @@ variable "mtag1_reader" {
 variable "mtag1_writer" {
   type = string
   description = "Writer API Token for MTAG1 bucket"
+}
+variable "mtag2_bucket" {
+  type = string
+  description = "mtag2 bucket name"
+}
+variable "mtag2_reader" {
+  type = string
+  description = "Reader API Token for MTAG2 bucket"
+}
+variable "mtag2_writer" {
+  type = string
+  description = "Writer API Token for MTAG2 bucket"
+}
+variable "mtag0_bucket" {
+  type = string
+  description = "mtag0 bucket name"
+}
+variable "mtag0_reader" {
+  type = string
+  description = "Reader API Token for MTAG0 bucket"
+}
+variable "mtag0_writer" {
+  type = string
+  description = "Writer API Token for MTAG0 bucket"
 }

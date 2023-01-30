@@ -11,8 +11,9 @@ resource "azurerm_key_vault" "dashfunc" {
   public_network_access_enabled   = true
   network_acls {
     bypass          = "AzureServices"
-    default_action  = "Deny"
+    default_action  = "Allow"
     ip_rules        = local.allowed_keyvault
+    # virtual_network_subnet_ids = [data.azurerm_subnet.subnet1.id,data.azurerm_subnet.subnet2.id]
   }
 }
 
@@ -36,7 +37,11 @@ resource "azurerm_role_assignment" "kvso-kt" {
   role_definition_name = "Key Vault Secrets Officer"
   principal_id = var.kv_owner
 }
-
+resource "azurerm_role_assignment" "kvso-func" {
+  scope = azurerm_key_vault.dashfunc.id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id = azurerm_linux_function_app.funcapp.identity[0].principal_id
+}
 resource "azurerm_key_vault_secret" "mtag1_reader" {
   name         = "mtag1-reader"
   value        = "${var.mtag1_reader}"

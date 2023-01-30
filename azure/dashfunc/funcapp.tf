@@ -30,7 +30,9 @@ resource "azurerm_linux_function_app" "funcapp" {
   enabled                     = true
   https_only                  = true
   app_settings                = merge(local.app_settings, var.app_settings)
-
+  identity {
+    type         = "SystemAssigned"
+  }
   site_config {
     application_insights_key = azurerm_application_insights.func.instrumentation_key
     application_insights_connection_string = azurerm_application_insights.func.connection_string
@@ -40,7 +42,8 @@ resource "azurerm_linux_function_app" "funcapp" {
       python_version = var.python_version
     }
   }
-
-
 }
-
+# resource "azurerm_app_service_virtual_network_swift_connection" "vnet" {
+#   app_service_id  = azurerm_linux_function_app.funcapp.id
+#   subnet_id       = data.azurerm_subnet.subnet1.id
+# }

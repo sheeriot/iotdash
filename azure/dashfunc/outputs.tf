@@ -1,27 +1,18 @@
-# output "vm-name" {
-#   value = azurerm_linux_virtual_machine.iotdash.name
+output "linux_app_ids" {
+    value = "${azurerm_linux_function_app.funcapp.identity}"
+}
+output "linux_app_id0" {
+    value = "${azurerm_linux_function_app.funcapp.identity[0]}"
+}
+output "linux_app_id0_principal" {
+    value = "${azurerm_linux_function_app.funcapp.identity[0].principal_id}"
+}
+# output "linux_app_ids_principal" {
+#     value = "${azurerm_linux_function_app.funcapp.identity[0].principal_id}"
 # }
-
-# output "vm-publicip" {
-#   value = azurerm_linux_virtual_machine.iotdash.public_ip_address
-# }
-
-# output "FQDN" {
-#   value = "${var.dns_fullname}"
-# }
-
-# output "azure_dns_name" {
-#   value = var.dns_azurename
-# }
-
-# output "pubkeyfile" {
-#   value = var.pubkey_file
-# }
-
-# output "module_path" {
-#   value = "${path.module}"
-# }
-
-# output "pubkeyfile_full" {
-#   value = "${path.module}/${var.pubkey_file}"
-# }
+output "azurerm_key_vault_secret_versionless" {
+    value = "${azurerm_key_vault_secret.mtag1_reader.versionless_id}"
+}
+output "azurerm_key_vault_secret_resource_versionless" {
+    value = "${azurerm_key_vault_secret.mtag1_reader.versionless_id}"
+}

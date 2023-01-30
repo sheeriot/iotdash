@@ -41,9 +41,9 @@ variable "app_settings" {
   type = map
   description = "testing terraform features map and merge"
   default = {
-    MTAG1_NAME = "MTAG-Test1"
+    MTAG1_NAME = "MTAG-MTop"
     MTAG2_NAME = "MTAG-Test2"
-    MTAG0_NAME = "MTAG-Test0"
+    MTAG0_NAME = "MTAG-GlobalSat"
   }
 }
 variable "influx_host" {

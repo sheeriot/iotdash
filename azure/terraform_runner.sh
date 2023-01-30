@@ -46,5 +46,5 @@ if [ "$1" = "$foldername" ]; then
     fi
 
 else
-    echo "Foldername: ${foldername} should match ENV_TYPE requested: ${1}"
+    echo "Foldername: ${foldername} should match component requested: ${1}"
 fi

@@ -42,7 +42,7 @@ variable "app_settings" {
   description = "testing terraform features map and merge"
   default = {
     MTAG1_NAME = "MTAG-MTop"
-    MTAG2_NAME = "MTAG-Test2"
+    MTAG2_NAME = "MTAG-MFTD"
     MTAG0_NAME = "MTAG-GlobalSat"
   }
 }

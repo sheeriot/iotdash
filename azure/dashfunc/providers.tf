@@ -30,10 +30,10 @@ locals {
     MTAG1_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag1_writer.name}/${azurerm_key_vault_secret.mtag1_writer.version})"
     MTAG2_BUCKET = var.mtag2_bucket
     MTAG2_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag2_reader.name}/${azurerm_key_vault_secret.mtag2_reader.version})"
-    MTAG2_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag2_reader.name}/${azurerm_key_vault_secret.mtag2_reader.version})"
+    MTAG2_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag2_writer.name}/${azurerm_key_vault_secret.mtag2_writer.version})"
     MTAG0_BUCKET = var.mtag0_bucket
     MTAG0_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag0_reader.name}/${azurerm_key_vault_secret.mtag0_reader.version})"
-    MTAG0_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag0_reader.name}/${azurerm_key_vault_secret.mtag0_reader.version})"
+    MTAG0_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag0_writer.name}/${azurerm_key_vault_secret.mtag0_writer.version})"
   }
   # public key vault to permit access from Terraform hosts
   # needs Permitted IP list for Key Vault firewall

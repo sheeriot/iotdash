@@ -41,9 +41,10 @@ variable "app_settings" {
   type = map
   description = "testing terraform features map and merge"
   default = {
-    MTAG1_NAME = "MTAG-MTop"
-    MTAG2_NAME = "MTAG-MFTD"
-    MTAG0_NAME = "MTAG-GlobalSat"
+  #   MTAG1_NAME = "MTAG-MTop"
+  #   MTAG2_NAME = "MTAG-MFTD"
+  #   MTAG3_NAME = "Everynet-FTD"
+  #   MTAG0_NAME = "MTAG-GlobalSat"
   }
 }
 variable "influx_host" {
@@ -89,4 +90,16 @@ variable "mtag0_reader" {
 variable "mtag0_writer" {
   type = string
   description = "Writer API Token for MTAG0 bucket"
+}
+variable "mtag3_bucket" {
+  type = string
+  description = "mtag3 bucket name"
+}
+variable "mtag3_reader" {
+  type = string
+  description = "Reader API Token for MTAG3 bucket"
+}
+variable "mtag3_writer" {
+  type = string
+  description = "Writer API Token for MTAG3 bucket"
 }

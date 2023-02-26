@@ -31,6 +31,9 @@ locals {
     MTAG2_BUCKET = var.mtag2_bucket
     MTAG2_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag2_reader.name}/${azurerm_key_vault_secret.mtag2_reader.version})"
     MTAG2_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag2_writer.name}/${azurerm_key_vault_secret.mtag2_writer.version})"
+    MTAG3_BUCKET = var.mtag3_bucket
+    MTAG3_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag3_reader.name}/${azurerm_key_vault_secret.mtag3_reader.version})"
+    MTAG3_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag3_writer.name}/${azurerm_key_vault_secret.mtag3_writer.version})"
     MTAG0_BUCKET = var.mtag0_bucket
     MTAG0_READER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag0_reader.name}/${azurerm_key_vault_secret.mtag0_reader.version})"
     MTAG0_WRITER = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault.dashfunc.vault_uri}secrets/${azurerm_key_vault_secret.mtag0_writer.name}/${azurerm_key_vault_secret.mtag0_writer.version})"

@@ -78,3 +78,15 @@ resource "azurerm_key_vault_secret" "mtag0_writer" {
   key_vault_id = azurerm_key_vault.dashfunc.id
   content_type = "api-token"
 }
+resource "azurerm_key_vault_secret" "mtag3_reader" {
+  name         = "mtag3-reader"
+  value        = "${var.mtag3_reader}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}
+resource "azurerm_key_vault_secret" "mtag3_writer" {
+  name         = "mtag3-writer"
+  value        = "${var.mtag3_writer}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}

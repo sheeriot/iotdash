@@ -103,3 +103,27 @@ variable "mtag3_writer" {
   type = string
   description = "Writer API Token for MTAG3 bucket"
 }
+variable "mtag11_bucket" {
+  type = string
+  description = "mtag11 bucket name"
+}
+variable "mtag11_reader" {
+  type = string
+  description = "Reader API Token for MTAG11 bucket"
+}
+variable "mtag11_writer" {
+  type = string
+  description = "Writer API Token for MTAG11 bucket"
+}
+variable "mtag12_bucket" {
+  type = string
+  description = "mtag12 bucket name"
+}
+variable "mtag12_reader" {
+  type = string
+  description = "Reader API Token for MTAG12 bucket"
+}
+variable "mtag12_writer" {
+  type = string
+  description = "Writer API Token for MTAG12 bucket"
+}

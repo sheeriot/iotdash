@@ -90,3 +90,27 @@ resource "azurerm_key_vault_secret" "mtag3_writer" {
   key_vault_id = azurerm_key_vault.dashfunc.id
   content_type = "api-token"
 }
+resource "azurerm_key_vault_secret" "mtag11_reader" {
+  name         = "mtag11-reader"
+  value        = "${var.mtag11_reader}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}
+resource "azurerm_key_vault_secret" "mtag11_writer" {
+  name         = "mtag11-writer"
+  value        = "${var.mtag11_writer}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}
+resource "azurerm_key_vault_secret" "mtag12_reader" {
+  name         = "mtag12-reader"
+  value        = "${var.mtag12_reader}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}
+resource "azurerm_key_vault_secret" "mtag12_writer" {
+  name         = "mtag12-writer"
+  value        = "${var.mtag12_writer}"
+  key_vault_id = azurerm_key_vault.dashfunc.id
+  content_type = "api-token"
+}
